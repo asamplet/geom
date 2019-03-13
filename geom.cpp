@@ -10,19 +10,28 @@ int main()
 
         if (strstr(a, "exit"))
             break;
-        if (strstr(a, "circle"))
-            printf("circle\n");
-        else
+        if (strstr(a, "circle")) {
+            printf("%s\n", a);
+            //            for(i = 0; i < 100; i++) {
+            //              if (a[i] == '(') {
+            //                strncat(b, emp, 2);
+            //
+            //                  break;
+            //            }
+            //          b[i] = a[i];
+            //    }
+
+        } else
             printf("unknown shape %s \n", a);
 
-        //      for (i = 0; i < 100; i++) {
-        //            if (a[i] == '(') {
-        // strncat(b, emp, 2);
+        for (i = 0; i < 100; i++) {
+            if (a[i] == '(') {
+                strncat(b, emp, 2);
 
-        //            break;
-        //      }
-        //    b[i] = a[i];
-        //}
+                break;
+            }
+            b[i] = a[i];
+        }
         // printf("%s \n", b);
         // strcpy(b, emp);
     }
