@@ -1,3 +1,4 @@
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -102,7 +103,7 @@ pip(r);
 pip(it);
 }
 }
-printf(" %d",it[7]);
+
 
     return 0;
 }
