@@ -1,14 +1,16 @@
-all: out
-
-out: prog.o pip.o
-	gcc build/prog.o build/pip.o -Wall -Werror -o -lm bit/geom
-
-prog.o: src/geom.cpp
-	gcc src/geom.cpp -o build/prog.o -cpp -Wall -Werror
-
-pip.o: src/pip.cpp
-	gcc src/pip.cpp -o build/pip.o -cpp -Wall -Werror - lm
-
+.PHONY:all clean
+CC=gcc
+CFLAGS=-Wall -Werror
+SD=~/geom/src/
+OD=~/geom/build/
+EXECUTABLE=~/geom/bin/geom.exe
+all: $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OD)geom.o $(OD)pip.o 
+	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(OD)pip.o $(OD)geom.o -lm
+$(OD)pip.o: $(SD)pip.cpp
+	$(CC) $(CFLAGS) -c -o $(OD)pip.o $(SD)pip.cpp -lm
+$(OD)geom.o: $(SD)geom.cpp
+	$(CC) $(CFLAGS) -c -o $(OD)geom.o $(SD)geom.cpp -lm
 clean:
-	rm -rf built/*.o bit/geom
-
+	rm -rf $(EXECUTABLE) $(OD)*.o
