@@ -1,9 +1,9 @@
 .PHONY:all clean
 CC=gcc
 CFLAGS=-Wall -Werror
-SD=~/geom/src/
-OD=~/geom/build/
-EXECUTABLE=~/geom/bin/geom.exe
+SD=src/
+OD=build/
+EXECUTABLE=bin/geom.exe
 all: $(EXECUTABLE)
 	
 $(EXECUTABLE): $(OD)geom.o $(OD)pip.o 
