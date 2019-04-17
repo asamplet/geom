@@ -25,4 +25,3 @@ void pip(int* x)
     pl = p * (p - s1) * (p - s2) * (p - s3);
     printf("Ploshad - %f \nPerimetr - %f\n", pl, pr);
 }
-
