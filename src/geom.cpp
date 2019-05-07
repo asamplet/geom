@@ -110,6 +110,10 @@ int main()
         n1++;
         
     }
+
+
+
+
 	per(it);
 
     return 0;

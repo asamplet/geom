@@ -1,29 +1,42 @@
-.PHONY:all clean
+.PHONY:all lean
 CC=gcc
 CFLAGS=-Wall -Werror
 SD=src/
 OD=build/src/
+ODT=build/test/
 EXECUTABLE=bin/geom.exe
+EXE=bin/test.exe
+
 all: $(EXECUTABLE)
 	
-$(EXECUTABLE): $(OD)geom.o $(OD)pip.o 
-	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(OD)pip.o $(OD)geom.o -lm
+$(EXECUTABLE): $(OD)geom.o $(OD)pip.o $(OD)per.o $(OD)plo.o
+	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(OD)pip.o $(OD)geom.o $(OD)per.o $(OD)plo.o -lm
+$(OD)per.o: $(SD)per.cpp
+	$(CC) $(CFLAGS) -c -o $(OD)per.o $(SD)per.cpp -lm
+$(OD)plo.o: $(SD)plo.cpp
+	$(CC) $(CFLAGS) -c -o $(OD)plo.o $(SD)plo.cpp -lm
 $(OD)pip.o: $(SD)pip.cpp
 	$(CC) $(CFLAGS) -c -o $(OD)pip.o $(SD)pip.cpp -lm
 $(OD)geom.o: $(SD)geom.cpp
 	$(CC) $(CFLAGS) -c -o $(OD)geom.o $(SD)geom.cpp -lm
 
 
-test: bin/geometry_test
+test: $(EXE)
 
-bin/geometry_test: build/test/geom.o build/test/pip.o 
-	gcc -Wall -Werror build/test/geom.o build/test/pip.o -o bin/geometry_test -lm
+$(EXE): $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o 
+	$(CC) $(CFLAGS) -o $(EXE) $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o -lm
 
-build/test/geom.o: test/main.c
-	gcc -Wall -Werror -c -I thirdparty -I src test/main.c -o build/test/main.o
+$(ODT)main.o: test/main.c
+	$(CC) $(CFLAGS) -c -I thirdparty -I src test/main.c -o $(ODT)main.o
 
-build/test/pip.o: src/pip.cpp src/foo.h
-	gcc -Wall -Werror -c -I thirdparty -I src src/pip.cpp -o build/test/pip.o
+$(ODT)pip.o: src/pip.cpp src/foo.h
+	$(CC) $(CFLAGS) -c -I thirdparty -I src $(SD)pip.cpp -o $(ODT)pip.o
+
+$(ODT)plo.o: src/plo.cpp src/foo.h
+	$(CC) $(CFLAGS) -c -I thirdparty -I src $(SD)plo.cpp -o $(ODT)plo.o
+
+$(ODT)per.o: src/per.cpp src/foo.h
+	$(CC) $(CFLAGS) -c -I thirdparty -I src $(SD)per.cpp -o $(ODT)per.o
 
 clean:
 	rm -rf $(EXECUTABLE) $(OD)*.o

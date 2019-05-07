@@ -11,6 +11,7 @@ const int n = 3;
 void per(int x[n][9]){
 	int i,j,j1,r,t1,t2,t3,t4,t5,t6;
 	float p, pl, s1, s2, s3, pr;
+	int pl1, pr1;
     
 	for(i=0;i<n;i++){
 		printf("\n%d.\n",i+1);
@@ -35,12 +36,18 @@ void per(int x[n][9]){
 		} 
 
 		
-		if( x[i][8] == 1) pip(x[i][2]);
-		if( x[i][8] == 2) pip(x[i]);
+		//if( x[i][8] == 1) pip(x[i][2]);
+		//if( x[i][8] == 2) pip(x[i]);
 		if( x[i][8] == 3){
 			printf("There is no such as figure\n");
 			continue;	
 		}		
+
+		pr1=per(x[i]);
+		pl1=plo(x[i]);
+
+		printf("Perimetr - %d\n",pr1);
+		printf("Ploshad - %d\n",pl1);
 		printf("Peresechenia: \n");
 		
 		
@@ -91,21 +98,21 @@ void per(int x[n][9]){
 						j1=10;
 						continue;
 					}
-				printf("(%d+%d)/2 = %d - %d\n", t1,t4,x[i][j1+1]+x[i][j1],x[i][j1+2]+x[i][j1+3]);
+
 				if( (t2+t5)/2 <= x[i][j1+1]+x[i][j1] )
 					if( (t2+t5)/2 >= x[i][j1+2]+x[i][j1+3] ){
 						printf("%d. Triangle\n",j+1);
 						j1=10;
 						continue;
 					}
-				printf("(%d+%d)/2 = %d - %d\n", t1,t4,x[i][j1+1]+x[i][j1],x[i][j1+2]+x[i][j1+3]);
+
 				if( (t3+t6)/2 <= x[i][j1+1]+x[i][j1] )
 					if( (t3+t6)/2 >= x[i][j1+2]+x[i][j1+3] ){
 						printf("%d. Triangle\n",j+1);
 						j1=10;
 						continue;
 					}
-				printf("(%d+%d)/2 = %d - %d\n", t1,t4,x[i][j1+1]+x[i][j1],x[i][j1+2]+x[i][j1+3]);
+
 				}
 			}
 		}
@@ -116,7 +123,7 @@ void per(int x[n][9]){
 	
 	
 }
-
+/*
 void pip(int r)
 {
     int pl, pr;
@@ -135,4 +142,4 @@ void pip(int* x)
     p = pr / 2;
     pl = p * (p - s1) * (p - s2) * (p - s3);
     printf("Ploshad - %f \nPerimetr - %f\n", pl, pr);
-}
+}*/
