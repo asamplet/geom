@@ -9,6 +9,10 @@ EXE=bin/test.exe
 
 all: build/src $(EXECUTABLE)
 	
+buid/src:
+	mkdir build/src -p
+
+
 $(EXECUTABLE): $(OD)geom.o $(OD)pip.o $(OD)per.o $(OD)plo.o
 	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(OD)pip.o $(OD)geom.o $(OD)per.o $(OD)plo.o -lm
 $(OD)per.o: $(SD)per.cpp
@@ -26,8 +30,6 @@ test: build/test $(EXE)
 build/test:
 	mkdir build/test -p 
 
-buid/src:
-	mkdir build/src -p
 
 $(EXE): $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o 
 	$(CC) $(CFLAGS) -o $(EXE) $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o -lm
