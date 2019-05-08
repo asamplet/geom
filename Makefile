@@ -9,7 +9,7 @@ EXE=bin/test.exe
 
 all: build/src $(EXECUTABLE)
 	
-buid/src:
+build/src:
 	mkdir build/src -p
 
 
