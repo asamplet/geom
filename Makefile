@@ -7,7 +7,7 @@ ODT=build/test/
 EXECUTABLE=bin/geom.exe
 EXE=bin/test.exe
 
-all: $(EXECUTABLE)
+all: build/src $(EXECUTABLE)
 	
 $(EXECUTABLE): $(OD)geom.o $(OD)pip.o $(OD)per.o $(OD)plo.o
 	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(OD)pip.o $(OD)geom.o $(OD)per.o $(OD)plo.o -lm
@@ -21,7 +21,7 @@ $(OD)geom.o: $(SD)geom.cpp
 	$(CC) $(CFLAGS) -c -o $(OD)geom.o $(SD)geom.cpp -lm
 
 
-test: build/test build/src $(EXE)
+test: build/test $(EXE)
 
 build/test:
 	mkdir build/test -p 
