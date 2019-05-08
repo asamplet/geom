@@ -21,7 +21,13 @@ $(OD)geom.o: $(SD)geom.cpp
 	$(CC) $(CFLAGS) -c -o $(OD)geom.o $(SD)geom.cpp -lm
 
 
-test: $(EXE)
+test: build/test build/src $(EXE)
+
+build/test:
+	mkdir build/test -p 
+
+buid/src:
+	mkdir build/src -p
 
 $(EXE): $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o 
 	$(CC) $(CFLAGS) -o $(EXE) $(ODT)main.o $(ODT)pip.o $(ODT)per.o $(ODT)plo.o -lm
@@ -39,4 +45,4 @@ $(ODT)per.o: src/per.cpp src/foo.h
 	$(CC) $(CFLAGS) -c -I thirdparty -I src $(SD)per.cpp -o $(ODT)per.o
 
 clean:
-	rm -rf $(EXECUTABLE) $(OD)*.o
+	rm -rf $(EXECUTABLE) $(EXE) $(OD)*.o
